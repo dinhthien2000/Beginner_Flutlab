@@ -1,5 +1,6 @@
 import 'package:beginner/views/WidgetTree.dart';
 import 'package:flutter/material.dart';
+import 'package:beginner/data/notifier.dart';
 // import 'package:flutter/scheduler.dart';
 
 void main() {
@@ -25,15 +26,20 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
-          brightness: Brightness.dark,
-        ),
-      ),
-      home: const WidgetTree(),
+    return ValueListenableBuilder(
+      valueListenable: isDarkNotifier,
+      builder: (context, isDark, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.teal,
+              brightness: isDark ? Brightness.dark : Brightness.light,
+            ),
+          ),
+          home: const WidgetTree(),
+        );
+      },
     );
   }
 }

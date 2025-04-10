@@ -1,3 +1,4 @@
 import 'package:flutter/foundation.dart';
 
-ValueNotifier<int> selectedPageIndexNotifier = ValueNotifier(0);
+ValueNotifier<int> selectedPageIndexNotifier = ValueNotifier<int>(0);
+ValueNotifier<bool> isDarkNotifier = ValueNotifier<bool>(true);

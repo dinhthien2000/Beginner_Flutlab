@@ -21,6 +21,25 @@ class WidgetTree extends StatelessWidget {
       appBar: AppBar(
         title: const Text(title),
         centerTitle: true,
+        actions: <Widget>[
+          ValueListenableBuilder(
+            valueListenable: isDarkNotifier,
+            builder: (context, isDark, child) {
+              return IconButton(
+                onPressed: () {
+                  isDarkNotifier.value = !isDarkNotifier.value;
+                },
+                icon: isDark
+                    ? const Icon(Icons.light_mode)
+                    : const Icon(Icons.dark_mode),
+              );
+            },
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: selectedPageIndexNotifier,
